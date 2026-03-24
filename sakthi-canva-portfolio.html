@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sakthi Ramkumar — India Localisation Lead</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Serif+Display:ital@0;1&family=Syne:wght@400;500;700;800&family=IBM+Plex+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0c0c0c;--paper:#f5f0e8;--cream:#ede8d8;
+  --rust:#c94b1f;--rust-light:#e8a27a;
+  --slate:#2a2a35;--muted:#7a7568;
+  --rule:rgba(12,12,12,0.15);--green:#1a3a2a;
+  --canva:#8B3DFF;--canva-light:#EDE3FF;
+}
+html{font-size:clamp(15px,1.2vw,19px);scroll-behavior:smooth}
+body{background:var(--paper);color:var(--ink);font-family:'Syne',sans-serif;overflow-x:hidden;cursor:none}
+
+/* CURSOR */
+.cur{width:10px;height:10px;background:var(--rust);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .2s,height .2s,background .2s}
+.cur.on{width:34px;height:34px;background:transparent;border:2px solid var(--rust)}
+.cur-t{width:26px;height:26px;border:1px solid rgba(201,75,31,.3);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform .22s ease}
+
+/* HEADER */
+header{display:flex;align-items:center;justify-content:space-between;padding:.85rem 3rem;border-bottom:1px solid var(--rule);position:sticky;top:0;z-index:200;background:var(--paper)}
+.logo{font-family:'Bebas Neue',sans-serif;font-size:1.25rem;letter-spacing:.1em}
+nav{display:flex;gap:1.8rem;flex-wrap:wrap}
+nav button{font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);background:none;border:none;cursor:pointer;padding:0;transition:color .2s}
+nav button:hover{color:var(--rust)}
+
+/* SECTION HEADER */
+section{border-bottom:1px solid var(--rule)}
+.sh{display:flex;align-items:baseline;justify-content:space-between;padding:.75rem 3rem;border-bottom:1px solid var(--rule)}
+.sl{font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:.5rem}
+.sl::before{content:'';width:18px;height:1px;background:var(--rust);display:inline-block}
+.sn{font-family:'Bebas Neue',sans-serif;font-size:1rem;color:var(--rule)}
+
+/* HERO */
+#hero{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--rule);overflow:hidden;min-height:480px}
+.hero-l{padding:3rem;display:flex;flex-direction:column;justify-content:space-between;border-right:1px solid var(--rule)}
+.eyebrow{font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--rust);margin-bottom:.5rem}
+h1{font-family:'Bebas Neue',sans-serif;font-size:clamp(4.5rem,7.5vw,8.5rem);line-height:.88;letter-spacing:.02em}
+h1 span{color:var(--rust)}
+.hero-sub{font-family:'DM Serif Display',serif;font-style:italic;font-size:clamp(1.2rem,1.8vw,1.8rem);color:var(--muted);margin-top:.6rem}
+.hero-bot{display:flex;flex-direction:column;align-items:flex-start;gap:.9rem}
+.hero-tagline{font-size:.95rem;line-height:1.75;color:var(--slate);max-width:48ch}
+.cta{display:inline-flex;align-items:center;gap:.6rem;background:var(--ink);color:var(--paper);padding:.8rem 1.8rem;font-family:'IBM Plex Mono',monospace;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase;border:none;cursor:pointer;transition:background .2s;white-space:nowrap}
+.cta:hover{background:var(--rust)}
+.cta svg{width:12px;height:12px}
+.hero-r{background:var(--green);display:flex;align-items:stretch;position:relative;overflow:hidden}
+.hero-r::before{content:'தமிழ்';position:absolute;font-family:'Bebas Neue',sans-serif;font-size:18vw;color:rgba(255,255,255,.03);top:50%;left:50%;transform:translate(-50%,-50%);white-space:nowrap;pointer-events:none}
+.sg{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:1fr 1fr 1fr;gap:1px;background:rgba(255,255,255,.08);width:100%;flex:1}
+.sb{background:var(--green);padding:1.2rem 1.6rem;display:flex;flex-direction:column;justify-content:flex-end;overflow:hidden}
+.sbn{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;line-height:.85;color:var(--rust-light);display:block;white-space:nowrap}
+.sbl{font-family:'IBM Plex Mono',monospace;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase;color:rgba(245,240,232,.55);margin-top:.4rem;display:block}
+
+/* EXPERIENCE */
+.exp-grid{display:grid;grid-template-columns:150px 1fr;padding:2.5rem 3rem;gap:2.5rem}
+.exp-date{font-family:'IBM Plex Mono',monospace;font-size:.75rem;color:var(--muted);line-height:1.9}
+.exp-role{font-weight:700;font-size:1.3rem;margin-bottom:.2rem}
+.exp-co{font-family:'DM Serif Display',serif;font-style:italic;font-size:1rem;color:var(--rust);margin-bottom:.75rem}
+.exp-desc{font-size:.95rem;line-height:1.8;color:var(--slate);max-width:62ch}
+.tags{display:flex;flex-wrap:wrap;gap:.35rem;margin-top:.85rem}
+.tag{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.07em;text-transform:uppercase;background:var(--cream);padding:.2rem .5rem;color:var(--muted)}
+
+/* CASE STUDY */
+.cg{display:grid;grid-template-columns:55% 45%}
+.case-l{padding:2.5rem 3rem;border-right:1px solid var(--rule);display:flex;flex-direction:column;justify-content:space-between;gap:1.5rem}
+.cbadge{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;background:var(--rust);color:white;padding:.2rem .6rem;margin-bottom:.35rem}
+.cyear{font-family:'IBM Plex Mono',monospace;font-size:.62rem;color:var(--muted);margin-bottom:.9rem}
+.ctitle{font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,2.8vw,2.8rem);line-height:1.05;margin-bottom:.5rem}
+.csub{font-family:'DM Serif Display',serif;font-style:italic;font-size:1.05rem;color:var(--muted);margin-bottom:.85rem}
+.cbody{font-size:.92rem;line-height:1.82;color:var(--slate)}
+.cr{background:var(--cream);padding:2rem;display:flex;flex-direction:column;gap:1rem}
+.metric{display:flex;gap:.9rem;align-items:flex-start;padding:.85rem 0;border-bottom:1px solid var(--rule)}
+.metric:last-child{border-bottom:none;padding-bottom:0}
+.mn{font-family:'Bebas Neue',sans-serif;font-size:1.6rem;color:var(--rust);min-width:1.8rem;line-height:1;flex-shrink:0}
+.ml{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);margin-bottom:.2rem}
+.mv{font-weight:600;font-size:.9rem;line-height:1.5}
+
+/* CAMPAIGN IMAGE AREA */
+.campaign-img-wrap{margin-top:auto}
+.img-upload-zone{position:relative;width:100%;aspect-ratio:4/3;border:2px dashed var(--rule);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;overflow:hidden;transition:border-color .2s;background-size:cover;background-position:center;background-repeat:no-repeat}
+.img-upload-zone:hover{border-color:var(--rust)}
+.img-upload-zone.has-image .img-placeholder{opacity:0}
+.img-upload-zone.has-image:hover::after{content:'Click to change';position:absolute;inset:0;background:rgba(12,12,12,.5);display:flex;align-items:center;justify-content:center;color:white;font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase}
+.img-placeholder{display:flex;flex-direction:column;align-items:center;gap:.5rem;pointer-events:none;transition:opacity .2s}
+.img-placeholder-icon{font-size:1.5rem;opacity:.3}
+.img-placeholder-text{font-family:'IBM Plex Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.img-placeholder-sub{font-family:'IBM Plex Mono',monospace;font-size:.58rem;color:var(--muted);opacity:.6}
+.img-upload-zone input[type="file"]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+
+/* LANGUAGE STRATEGY TABLE */
+.mw{padding:2rem 3rem}
+table{width:100%;border-collapse:collapse}
+th{font-family:'IBM Plex Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-align:left;padding:.7rem 1.1rem;border-bottom:2px solid var(--ink);background:var(--cream)}
+td{padding:.85rem 1.1rem;font-size:.92rem;line-height:1.65;border-bottom:1px solid var(--rule);vertical-align:top}
+tr:hover td{background:var(--cream)}
+td.obs{color:var(--muted);font-style:italic;font-size:.88rem}
+td.arrow{text-align:center;color:var(--rust);font-size:1.1rem;width:2.5rem}
+td.decision{font-weight:600;font-size:.88rem}
+td.outcome{font-size:.82rem;font-family:'IBM Plex Mono',monospace;color:var(--slate)}
+.script-example{font-family:'IBM Plex Mono',monospace;font-size:.78rem;color:var(--rust);display:block;margin-top:.2rem}
+
+/* WORK SAMPLES */
+.wsg{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--rule)}
+.wsc{background:var(--paper);transition:background .2s;display:flex;flex-direction:column}
+.wsc:hover{background:var(--cream)}
+.ws-img-zone{width:100%;aspect-ratio:16/9;position:relative;border-bottom:1px solid var(--rule);background-size:cover;background-position:center;background-repeat:no-repeat;display:flex;align-items:center;justify-content:center;overflow:hidden;cursor:pointer;background-color:var(--cream)}
+.ws-img-zone .img-placeholder{flex-direction:row;gap:.4rem}
+.ws-img-zone.has-image .img-placeholder{opacity:0}
+.ws-img-zone.has-image:hover::after{content:'Click to change';position:absolute;inset:0;background:rgba(12,12,12,.5);display:flex;align-items:center;justify-content:center;color:white;font-family:'IBM Plex Mono',monospace;font-size:.65rem;letter-spacing:.1em;text-transform:uppercase}
+.ws-img-zone input[type="file"]{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%}
+.ws-body{padding:1.75rem;flex:1;display:flex;flex-direction:column}
+.wsn{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;line-height:1;color:var(--rule);margin-bottom:.5rem;transition:color .2s}
+.wsc:hover .wsn{color:var(--rust-light)}
+.wst{font-weight:700;font-size:1.05rem;margin-bottom:.35rem}
+.wsd{font-size:.88rem;line-height:1.65;color:var(--muted);margin-bottom:.7rem;flex:1}
+.wstype{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--rust)}
+
+/* TOOL SECTION */
+.tool-section-inner{background:var(--green);color:var(--paper);padding:3rem;display:grid;grid-template-columns:1fr 1.4fr;gap:3rem}
+.tool-title{font-family:'DM Serif Display',serif;font-size:2.2rem;color:var(--rust-light);margin-bottom:.65rem}
+.tool-body{font-size:.92rem;line-height:1.8;color:rgba(245,240,232,.75);margin-bottom:1.2rem}
+
+/* SKILLS */
+.skc{display:grid;grid-template-columns:1fr 1fr}
+.skcol{padding:2.5rem 3rem;border-right:1px solid var(--rule)}
+.skcol:last-child{border-right:none}
+.skgrp{font-family:'IBM Plex Mono',monospace;font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--rust);margin-bottom:.9rem}
+.skrow{display:flex;align-items:center;justify-content:space-between;padding:.8rem 0;border-bottom:1px solid var(--rule)}
+.skname{font-size:.95rem;font-weight:500}
+.bw{width:110px;height:3px;background:var(--rule)}
+.bar{height:100%;background:var(--rust);transform:scaleX(0);transform-origin:left;animation:grow 1.2s ease forwards}
+@keyframes grow{to{transform:scaleX(1)}}
+
+/* FADE IN */
+.fi{opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease}
+.fi.show{opacity:1;transform:none}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:900px){
+  header{padding:.85rem 1.5rem}
+  .sh{padding:.65rem 1.5rem}
+  #hero{grid-template-columns:1fr}
+  .hero-r{display:none}
+  .hero-l{padding:2rem 1.5rem;min-height:auto}
+  .exp-grid{grid-template-columns:1fr;padding:2rem 1.5rem;gap:.75rem}
+  .cg{grid-template-columns:1fr}
+  .cr{display:none}
+  .case-l{padding:2rem 1.5rem}
+  .mw{padding:1.5rem}
+  table{font-size:.82rem}
+  th{padding:.6rem .8rem}
+  td{padding:.7rem .8rem}
+  .wsg{grid-template-columns:1fr 1fr}
+  .tool-section-inner{grid-template-columns:1fr;padding:2rem 1.5rem;gap:2rem}
+  .skc{grid-template-columns:1fr}
+  .skcol{padding:2rem 1.5rem;border-right:none;border-bottom:1px solid var(--rule)}
+  .skcol:last-child{border-bottom:none}
+}
+@media(max-width:560px){
+  nav{gap:1rem}
+  nav button{font-size:.62rem}
+  h1{font-size:clamp(3.5rem,14vw,5rem)}
+  .wsg{grid-template-columns:1fr}
+  .lt-row{grid-template-columns:1fr}
+  td.arrow{display:none}
+  table{display:block;overflow-x:auto}
+}
+@media(max-width:360px){
+  header{flex-direction:column;align-items:flex-start;gap:.5rem}
+  .hero-l{padding:1.5rem 1rem}
+  .mw{padding:1rem}
+  .ws-body{padding:1.2rem}
+}
+</style>
+</head>
+<body>
+
+<div class="cur" id="cur"></div>
+<div class="cur-t" id="curT"></div>
+
+<!-- HEADER -->
+<header>
+  <div class="logo">SAKTHI RAMKUMAR · INDIA LOCALISATION</div>
+  <nav>
+    <button onclick="goTo('experience')">About</button>
+    <button onclick="goTo('case-study')">Campaign</button>
+    <button onclick="goTo('work-samples')">Work</button>
+    <button onclick="goTo('lang-tool')">CI Tracker</button>
+    <button onclick="goTo('skills')">Skills</button>
+  </nav>
+</header>
+
+<!-- HERO -->
+<div id="hero">
+  <div class="hero-l fi">
+    <div>
+      <div class="eyebrow">India Localisation Lead · B2B SaaS · Regional Language Strategy</div>
+      <h1>SAKTHI<br>RAMKUMAR<span>.</span></h1>
+      <p class="hero-sub">Language-first. Growth-minded. India-native.</p>
+    </div>
+    <div class="hero-bot">
+      <p class="hero-tagline">5 years building India-first product and localisation experiences at Zoho. Native Tamil speaker with professional read-write proficiency. From Tamil UX copy to a Vadivelu-powered OOH campaign — deep understanding of how India's language ecosystem shapes trust, adoption, and growth.</p>
+      <button class="cta" onclick="goTo('case-study')">View Case Studies <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12l7 7 7-7"/></svg></button>
+    </div>
+  </div>
+  <div class="hero-r fi">
+    <div class="sg">
+      <div class="sb"><div class="sbn">1K+</div><div class="sbl">India Signups · Year 1</div></div>
+      <div class="sb"><div class="sbn">45%</div><div class="sbl">MQL→SQL lift</div></div>
+      <div class="sb"><div class="sbn">40%</div><div class="sbl">Direct traffic · OOH</div></div>
+      <div class="sb"><div class="sbn">11→5%</div><div class="sbl">Paid churn reduction</div></div>
+      <div class="sb"><div class="sbn">30%</div><div class="sbl">Global pipeline from India</div></div>
+      <div class="sb"><div class="sbn">3</div><div class="sbl">Markets owned</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="sh"><div class="sl">Experience</div><div class="sn">01</div></div>
+  <div class="exp-grid fi">
+    <div class="exp-date">Nov 2020 → Present<br>Chennai, India<br><br>Zoho Corporation</div>
+    <div>
+      <div class="exp-role">Senior Product Marketing Manager</div>
+      <div class="exp-co">TrainerCentral — B2B SaaS LMS &amp; Online Course Platform</div>
+      <div class="exp-desc">
+        Founding PMM for TrainerCentral's India market. Owned end-to-end India localisation strategy — from Tamil and Hindi UX copy to culturally-rooted OOH campaigns. Built language-specific tone of voice guidelines for Tamil and Hindi, adapting product messaging and campaign content for regional audiences rather than translating global assets.
+        <br><br>
+        Worked directly on Tamil UX copy across product surfaces at Zoho, ensuring terminology was natural for Tamil-speaking users, culturally accurate, and consistent. Scaled India to 30% of global pipeline. Built lifecycle programmes, reducing paid churn from 11% to 5%.
+      </div>
+      <div class="tags">
+        <span class="tag">India Localisation</span>
+        <span class="tag">Tamil UX Copy</span>
+        <span class="tag">Hindi Campaigns</span>
+        <span class="tag">Regional Language Strategy</span>
+        <span class="tag">Funnel Analysis</span>
+        <span class="tag">Cross-functional PMM</span>
+        <span class="tag">OOH Campaigns</span>
+        <span class="tag">Content &amp; SEO</span>
+      </div>
+    </div>
+  </div>
+  <div class="exp-grid fi" style="border-top:1px solid var(--rule)">
+    <div class="exp-date">Jun 2020 → Nov 2020<br>India<br><br>Freelance</div>
+    <div>
+      <div class="exp-role">Freelance Content Marketer</div>
+      <div class="exp-co">Esports &amp; Startups</div>
+      <div class="exp-desc">Worked with esports teams on PR and content — campaign ideation, social content, and brand messaging for gaming audiences. Delivered SEO strategy, brand messaging, and growth positioning for startups, achieving 2–3× organic traffic growth and 15–25% conversion rate improvements across clients.</div>
+      <div class="tags">
+        <span class="tag">Content Strategy</span>
+        <span class="tag">SEO</span>
+        <span class="tag">Brand Messaging</span>
+        <span class="tag">Esports PR</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURED CASE STUDY -->
+<section id="case-study">
+  <div class="sh"><div class="sl">Featured Case Study — OOH Campaign</div><div class="sn">02</div></div>
+  <div class="cg">
+    <div class="case-l fi">
+      <div>
+        <div class="cbadge">India Localisation · Cultural Campaign</div>
+        <div class="cyear">2022 · Chennai, Tamil Nadu</div>
+        <h2 class="ctitle">Body Soda Becomes an Online Trainer</h2>
+        <p class="csub">Vadivelu. Chai Kings. A comic strip. 40% direct traffic lift.</p>
+        <p class="cbody">
+          The ICP was clear — creators and educators in South India with a skill and the ambition to earn from it. The brief: reach them in Chennai. The insight was simpler than any strategy deck: <strong>Chennai runs on chai, any time, any season.</strong> Chai Kings, a beloved local chain with high-traffic metro outlets and a growing online order base, became the medium.
+          <br><br>
+          For the message, we needed a face Chennai would stop for. No one was more obvious than <strong>Vadivelu</strong> — Tamil cinema's most beloved comedian, whose "Nesamani" character became a cultural phenomenon during COVID. We used a different character: <strong>Body Soda</strong> from the film Pokkiri, a martial arts master who is famously, comically, always getting hurt.
+          <br><br>
+          We recreated the scene as a <strong>comic strip series with a twist</strong>: Body Soda gets hurt one too many times, switches to online training, becomes famous, and earns from home without a single bruise. The comic strip ran on Chai Kings tea flasks at select metro-level outlets — high footfall, high online ordering, maximum window visibility — with a QR code linking to a dedicated landing page and a social campaign built around the same narrative.
+          <br><br>
+          The result: <strong>40% lift in direct traffic</strong> and measurable brand uplift across the Tamil market.
+        </p>
+      </div>
+      <div class="tags" style="margin-top:1.2rem">
+        <span class="tag">Cultural Insight</span>
+        <span class="tag">Tamil Audience</span>
+        <span class="tag">OOH + Digital</span>
+        <span class="tag">Hyperlocal Media</span>
+        <span class="tag">QR-linked LP</span>
+        <span class="tag">Comic Strip Creative</span>
+      </div>
+    </div>
+    <div class="cr fi">
+      <div class="metric"><div class="mn">01</div><div><div class="ml">Result</div><div class="mv">40% lift in direct traffic. Measurable brand uplift in the Tamil market.</div></div></div>
+      <div class="metric"><div class="mn">02</div><div><div class="ml">Cultural Insight</div><div class="mv">Chennai runs on chai year-round. Chai Kings = high-traffic metro medium with high online ordering.</div></div></div>
+      <div class="metric"><div class="mn">03</div><div><div class="ml">Creative Hook</div><div class="mv">Vadivelu's "Body Soda" — a kung fu master who switches to online training. Comic strip format, not ad copy.</div></div></div>
+      <div class="metric"><div class="mn">04</div><div><div class="ml">Distribution</div><div class="mv">Tea flask hook image with QR → dedicated LP + social campaign. Select metro outlets for maximum visibility.</div></div></div>
+
+    </div>
+  </div>
+</section>
+
+<!-- LANGUAGE STRATEGY TABLE -->
+<section>
+  <div class="sh"><div class="sl">Language Strategy — Observations &amp; Decisions</div><div class="sn">03</div></div>
+  <div class="mw fi">
+    <table>
+      <thead><tr>
+        <th>India-specific Observation</th>
+        <th></th>
+        <th>Localisation Decision</th>
+        <th>Outcome</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td class="obs">Pure Tamil UX copy felt foreign even to Tamil speakers — literary terms created friction</td>
+          <td class="arrow">→</td>
+          <td class="decision">60% Tanglish, 30% pure Tamil, 10% English. Transliterate where needed.
+            <span class="script-example">"ஆன்லைன் வகுப்பு" not "இணைய வகுப்பு"</span>
+          </td>
+          <td class="outcome">Higher UX comprehension. Users adopted faster.</td>
+        </tr>
+        <tr>
+          <td class="obs">Google Ads drove strong India signups from teachers — but conversion flatlined</td>
+          <td class="arrow">→</td>
+          <td class="decision">Support tickets + sales call analysis revealed intent mismatch: users wanted to join as freelance teachers, not build their own platform. Rewrote LP with explicit "What to expect" section.</td>
+          <td class="outcome">CPL ↓, conversion ↑, MQL→SQL +45%</td>
+        </tr>
+        <tr>
+          <td class="obs">Hindi activation needed a culturally resonant pain point — not a feature list</td>
+          <td class="arrow">→</td>
+          <td class="decision">Focused on YouTube monetisation complexity and Udemy's high commission model. Hindi-English copy targeting metro creators: Mumbai, Delhi, Kolkata, Lucknow.</td>
+          <td class="outcome">Higher CTR vs. generic Hindi copy in metro campaigns.</td>
+        </tr>
+        <tr>
+          <td class="obs">"Zero transaction fees" messaging underperformed in India — creators didn't know they were paying fees elsewhere</td>
+          <td class="arrow">→</td>
+          <td class="decision">Shifted from "we don't charge fees" to "you've been losing money and didn't know it." Made the invisible fee visible first, then positioned TC as the fix.</td>
+          <td class="outcome">Revenue up 18% in two quarters post-pricing revamp.</td>
+        </tr>
+        <tr>
+          <td class="obs">SCORM flagged by Indian enterprise prospects in support tickets — deals lost, feature absent</td>
+          <td class="arrow">→</td>
+          <td class="decision">Triangulated: customer reviews → support tickets → sales lost-deal data. Quantified lost deals, built business case, presented to Product team.</td>
+          <td class="outcome">SCORM pushed to roadmap. Now available as beta feature.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- WORK SAMPLES -->
+<section id="work-samples">
+  <div class="sh"><div class="sl">Work Samples</div><div class="sn">04</div></div>
+  <div class="wsg" style="grid-template-columns:1fr 1fr">
+
+    <!-- 01 OOH -->
+    <div class="wsc fi">
+      <a href="https://www.canva.com/design/DAHE2l7eIVU/L9SJy49897RaMAgy0-df1g/view?utm_content=DAHE2l7eIVU&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hf0df182916" target="_blank" rel="noopener" style="display:block;text-decoration:none;border-bottom:1px solid var(--rule);background:var(--green);aspect-ratio:16/9;position:relative;overflow:hidden;transition:opacity .2s;">
+        <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.75rem;padding:1.5rem;">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:6rem;line-height:1;color:rgba(255,255,255,.06);position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);white-space:nowrap;pointer-events:none;letter-spacing:.1em;">OOH</div>
+          <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="var(--rust-light)" stroke-width="1.5" style="position:relative;z-index:1"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,240,232,.6);position:relative;z-index:1;">View Design</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;color:var(--rust-light);position:relative;z-index:1;display:flex;align-items:center;gap:.3rem;">Open in Canva <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div>
+        </div>
+      </a>
+      <div class="ws-body">
+        <div class="wsn">01</div>
+        <div class="wst">Tamil OOH — Body Soda Campaign</div>
+        <div class="wsd">Vadivelu's "Body Soda" character from Pokkiri reimagined as a comic strip — printed on Chai Kings tea flasks in Chennai metro outlets, QR-linked to a dedicated landing page. Grounded in Tamil cultural vernacular, not a translated ad.</div>
+        <span class="wstype">India Localisation · OOH · Cultural Marketing</span>
+      </div>
+    </div>
+
+    <!-- 02 Regional Activation -->
+    <div class="wsc fi">
+      <a href="https://www.canva.com/design/DAHE2t-lUs8/4S3tJNWVeH1BpOl4w5BocQ/view?utm_content=DAHE2t-lUs8&utm_campaign=designshare&utm_medium=link2&utm_source=uniquelinks&utlId=hef8f0ba14b" target="_blank" rel="noopener" style="display:block;text-decoration:none;border-bottom:1px solid var(--rule);background:var(--green);aspect-ratio:16/9;position:relative;overflow:hidden;transition:opacity .2s;">
+        <div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.75rem;padding:1.5rem;">
+          <div style="font-family:'Bebas Neue',sans-serif;font-size:6rem;line-height:1;color:rgba(255,255,255,.06);position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);white-space:nowrap;pointer-events:none;letter-spacing:.1em;">REGIONAL</div>
+          <svg width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="var(--rust-light)" stroke-width="1.5" style="position:relative;z-index:1"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(245,240,232,.6);position:relative;z-index:1;">View Design</div>
+          <div style="font-family:'IBM Plex Mono',monospace;font-size:.58rem;letter-spacing:.08em;text-transform:uppercase;color:var(--rust-light);position:relative;z-index:1;display:flex;align-items:center;gap:.3rem;">Open in Canva <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg></div>
+        </div>
+      </a>
+      <div class="ws-body">
+        <div class="wsn">02</div>
+        <div class="wst">Regional Activation Campaign</div>
+        <div class="wsd">Targeted creators in Mumbai, Delhi, Kolkata, and Lucknow. Anchored the message on real pain — YouTube's complex monetisation criteria and Udemy's high commission model. Hindi-English copy (not literal translation) to match how metro creators actually communicate.</div>
+        <span class="wstype">Hindi Campaign · Creator Segment · Metro India</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CI SIGNAL TRACKER -->
+<section id="lang-tool">
+  <div class="sh"><div class="sl">India Localisation Signal Tracker</div><div class="sn">05</div></div>
+  <div class="tool-section-inner fi">
+    <div>
+      <h3 class="tool-title">AI-powered CI Tracker.</h3>
+      <p class="tool-body">
+        A competitive intelligence tracker built entirely in Claude through iterative prompting — no code written manually. Signals from Visualping and Distill.io monitor competitor pages (pricing, features, sitemaps, careers) and route into the tracker, where Claude analyses each change, cross-references positioning, and surfaces what actually matters — with pattern detection across weeks and a shareable newsletter output.
+      </p>
+      <div class="tags">
+        <span class="tag" style="background:rgba(255,255,255,.07);color:rgba(245,240,232,.45)">Claude API · Live</span>
+        <span class="tag" style="background:rgba(255,255,255,.07);color:rgba(245,240,232,.45)">India Localisation CI</span>
+        <span class="tag" style="background:rgba(255,255,255,.07);color:rgba(245,240,232,.45)">Signal → Action</span>
+      </div>
+    </div>
+    <div id="ci-shell"></div>
+  </div>
+</section>
+
+<style>
+#ci-shell *{box-sizing:border-box}
+.ci-wrap{background:#fff;color:#1a1a1a;font-family:system-ui,-apple-system,sans-serif;font-size:14px}
+.ci-hdr{background:#1a1a1a;padding:12px 18px;display:flex;align-items:center;justify-content:space-between}
+.ci-hdr-title{font-size:13px;font-weight:700;color:#f5f0e8}
+.ci-hdr-sub{font-size:10px;color:rgba(245,240,232,.4);letter-spacing:.07em;text-transform:uppercase}
+.ci-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;padding:12px 16px 0}
+.ci-stat{background:#f9f9f8;border:1px solid #e5e7eb;border-radius:8px;padding:8px 10px}
+.ci-stat-n{font-size:18px;font-weight:700}
+.ci-stat-l{font-size:10px;color:#888;margin-top:1px}
+.ci-tabs-wrap{padding:0 16px}
+.ci-tabs{display:flex;border-bottom:1px solid #e5e7eb;overflow-x:auto}
+.ci-tab{padding:9px 13px;font-size:11px;font-weight:700;color:#888;cursor:pointer;border-bottom:3px solid transparent;margin-bottom:-1px;white-space:nowrap;transition:all .15s}
+.ci-tab.active{color:#c94b1f;border-bottom-color:#c94b1f}
+.ci-body{padding:14px 16px}
+.ci-card{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:13px;margin-bottom:8px}
+.ci-btn{padding:7px 13px;border-radius:7px;font-size:12px;cursor:pointer;font-family:inherit;border:1px solid #d1d5db;background:#fff;color:#1a1a1a;transition:all .15s}
+.ci-btn.primary{background:#c94b1f;color:#fff;border-color:#c94b1f}
+.ci-btn.primary:hover{background:#a83a14}
+.ci-btn.primary:disabled{background:#ccc;cursor:not-allowed}
+.ci-btn.ghost{background:transparent;border-color:transparent;color:#888}
+.ci-btn.sm{padding:4px 9px;font-size:11px}
+.ci-btn.danger{color:#A32D2D;border-color:#fca5a5}
+.ci-label{font-size:11px;font-weight:600;color:#666;margin-bottom:4px;letter-spacing:.04em;text-transform:uppercase}
+.ci-textarea{width:100%;padding:8px 10px;border:1px dashed #d1d5db;border-radius:7px;font-size:12px;background:#f9f9f8;color:#1a1a1a;font-family:inherit;resize:vertical;line-height:1.6}
+.ci-select{width:100%;padding:6px 9px;border:1px solid #d1d5db;border-radius:6px;font-size:12px;background:#fff;color:#1a1a1a;font-family:inherit}
+.ci-row2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px}
+.ci-pbox{display:flex;align-items:center;gap:8px;font-size:12px;color:#888;padding:10px 12px;background:#f9f9f8;border-radius:8px;margin-top:8px;border:1px solid #e5e7eb}
+.ci-spinner{width:12px;height:12px;border:2px solid #e5e7eb;border-top-color:#c94b1f;border-radius:50%;animation:cispin .7s linear infinite;flex-shrink:0}
+@keyframes cispin{to{transform:rotate(360deg)}}
+.ci-err{background:#fce8e1;color:#c94b1f;padding:8px 12px;border-radius:8px;font-size:11px;margin-top:6px}
+.ci-badge{display:inline-flex;align-items:center;padding:2px 6px;border-radius:999px;font-size:10px;font-weight:600;white-space:nowrap}
+.bprice{background:#fce8e1;color:#A32D2D}
+.blang{background:#EDE3FF;color:#6B21A8}
+.bproduct{background:#E6F1FB;color:#185FA5}
+.bcampaign{background:#FAEEDA;color:#854F0B}
+.bhiring{background:#EAF3DE;color:#3B6D11}
+.bnoise{background:#f3f4f6;color:#4b5563}
+.bother{background:#f3f4f6;color:#4b5563}
+.ci-act-block{border-radius:7px;padding:9px 11px;margin-top:7px;font-size:12px}
+.act-do{background:#f0fdf4;border:1px solid #bbf7d0;color:#14532d}
+.act-watch{background:#fffbeb;border:1px solid #fde68a;color:#78350f}
+.act-fyi{background:#f9f9f8;border:1px solid #e5e7eb;color:#4b5563}
+.ci-act-label{font-size:9px;font-weight:800;text-transform:uppercase;letter-spacing:.07em;margin-bottom:4px}
+.ci-entry-grid{display:grid;grid-template-columns:72px 82px 1fr;gap:10px;align-items:start;padding:11px 0;border-bottom:1px solid #f3f4f6}
+.ci-entry-grid:last-child{border-bottom:none}
+.ci-col-hdr{font-size:10px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.05em}
+.ci-hyp-card{background:#fff;border:1px solid #e5e7eb;border-radius:10px;padding:13px;margin-bottom:8px}
+.ci-conf-wrap{height:4px;background:#f3f4f6;border-radius:2px;margin:6px 0 10px}
+.ci-conf-bar{height:4px;border-radius:2px}
+.ci-signal-pill{display:inline-flex;align-items:center;gap:3px;background:#f3f4f6;border:1px solid #e5e7eb;border-radius:999px;padding:2px 6px;font-size:10px;color:#4b5563}
+.ci-filt{padding:3px 8px;border-radius:999px;font-size:11px;cursor:pointer;border:1px solid #e5e7eb;background:#fff;color:#666;font-family:inherit}
+.ci-filt.active{background:#c94b1f;color:#fff;border-color:#c94b1f}
+.ci-empty{text-align:center;padding:2rem 1rem;color:#888;font-size:12px}
+.ci-hyp-act{background:#f0fdf4;border:1px solid #bbf7d0;border-radius:8px;padding:10px 12px;margin-top:9px}
+.ci-hyp-act-label{font-size:9px;font-weight:800;color:#166534;text-transform:uppercase;letter-spacing:.07em;margin-bottom:5px}
+.ci-hyp-act-item{font-size:11px;color:#14532d;padding:2px 0;display:flex;gap:5px;line-height:1.5;align-items:flex-start}
+.ci-team{display:inline-flex;align-items:center;gap:2px;padding:2px 7px;border-radius:4px;font-size:10px;font-weight:700;flex-shrink:0}
+.team-loc{background:#EDE3FF;color:#6B21A8}
+.team-prod{background:#E6F1FB;color:#185FA5}
+.team-content{background:#FAEEDA;color:#854F0B}
+.team-lead{background:#fce8e1;color:#A32D2D}
+@media(max-width:560px){.ci-stats{grid-template-columns:1fr 1fr}.ci-row2{grid-template-columns:1fr}}
+</style>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="sh"><div class="sl">Core Skills</div><div class="sn">06</div></div>
+  <div class="skc">
+    <div class="skcol fi">
+      <div class="skgrp">Localisation &amp; Language</div>
+      <div class="skrow"><span class="skname">Tamil UX Copy (Native)</span><div class="bw"><div class="bar" style="width:98%;animation-delay:.1s"></div></div></div>
+      <div class="skrow"><span class="skname">Hindi Campaign Localisation</span><div class="bw"><div class="bar" style="width:82%;animation-delay:.2s"></div></div></div>
+      <div class="skrow"><span class="skname">India Language Strategy</span><div class="bw"><div class="bar" style="width:92%;animation-delay:.3s"></div></div></div>
+      <div class="skrow"><span class="skname">Tone of Voice Frameworks</span><div class="bw"><div class="bar" style="width:88%;animation-delay:.4s"></div></div></div>
+      <div class="skrow"><span class="skname">Cross-market Adaptation</span><div class="bw"><div class="bar" style="width:90%;animation-delay:.5s"></div></div></div>
+    </div>
+    <div class="skcol fi">
+      <div class="skgrp">Growth &amp; Product</div>
+      <div class="skrow"><span class="skname">Funnel Analysis &amp; Fix</span><div class="bw"><div class="bar" style="width:88%;animation-delay:.15s"></div></div></div>
+      <div class="skrow"><span class="skname">India Market Insights</span><div class="bw"><div class="bar" style="width:90%;animation-delay:.25s"></div></div></div>
+      <div class="skrow"><span class="skname">SEO &amp; Organic Content</span><div class="bw"><div class="bar" style="width:85%;animation-delay:.35s"></div></div></div>
+      <div class="skrow"><span class="skname">Product Roadmap Influence</span><div class="bw"><div class="bar" style="width:80%;animation-delay:.45s"></div></div></div>
+      <div class="skrow"><span class="skname">AI-powered CI Workflows</span><div class="bw"><div class="bar" style="width:78%;animation-delay:.55s"></div></div></div>
+    </div>
+  </div>
+</section>
+
+<script>
+// ── CURSOR ──
+(function(){
+  var cur=document.getElementById('cur'),curT=document.getElementById('curT');
+  var mx=0,my=0,tx=0,ty=0;
+  document.addEventListener('mousemove',function(e){
+    mx=e.clientX;my=e.clientY;
+    cur.style.left=mx+'px';cur.style.top=my+'px';
+  });
+  setInterval(function(){
+    tx+=(mx-tx)*0.12;ty+=(my-ty)*0.12;
+    curT.style.left=tx+'px';curT.style.top=ty+'px';
+  },16);
+  document.querySelectorAll('button,a,select').forEach(function(el){
+    el.addEventListener('mouseenter',function(){cur.classList.add('on');});
+    el.addEventListener('mouseleave',function(){cur.classList.remove('on');});
+  });
+})();
+
+// ── NAVIGATION ──
+function goTo(id){
+  var el=document.getElementById(id);
+  if(el)el.scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+// ── FADE IN ──
+(function(){
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(e){if(e.isIntersecting)e.target.classList.add('show');});
+  },{threshold:0.06});
+  document.querySelectorAll('.fi').forEach(function(el){obs.observe(el);});
+})();
+
+// ── IMAGE UPLOAD ──
+function triggerUpload(inputId){
+  var inp=document.getElementById(inputId);
+  if(inp)inp.click();
+}
+
+function handleUpload(input,zoneId,key){
+  var file=input.files[0];
+  if(!file||!file.type.startsWith('image/'))return;
+  var reader=new FileReader();
+  reader.onload=function(e){
+    var b64=e.target.result;
+    try{localStorage.setItem('portfolio-img-'+key,b64);}catch(err){}
+    applyImage(zoneId,b64);
+  };
+  reader.readAsDataURL(file);
+}
+
+function applyImage(zoneId,src){
+  var zone=document.getElementById(zoneId);
+  if(!zone)return;
+  zone.style.backgroundImage='url('+src+')';
+  zone.classList.add('has-image');
+  var ph=zone.querySelector('.img-placeholder');
+  if(ph)ph.style.opacity='0';
+}
+
+// Image upload zones replaced with Canva thumbnail links
+
+// ── CI SIGNAL TRACKER ──
+(function(){
+  var COMPETITORS=['Adobe Express','Picsart','Canva (global)','Microsoft Designer','VistaCreate','Meesho','ShareChat'];
+  var PAGE_TYPES=[
+    {label:'Pricing / Plans',cadence:'daily',weight:1.5,key:'pricing'},
+    {label:'India landing page',cadence:'daily',weight:1.5,key:'india-lp'},
+    {label:'Regional language UX',cadence:'weekly',weight:1.3,key:'lang-ux'},
+    {label:'Campaign creative',cadence:'weekly',weight:1.2,key:'campaign'},
+    {label:'Blog / Content',cadence:'on publish',weight:1.0,key:'blog'},
+    {label:'Careers page',cadence:'weekly',weight:0.9,key:'careers'},
+    {label:'App store listing',cadence:'weekly',weight:1.1,key:'appstore'},
+    {label:'Google Alerts',cadence:'as-it-happens',weight:1.0,key:'alerts'},
+    {label:'Manual observation',cadence:'manual',weight:0.8,key:'manual'},
+  ];
+
+  var CS={tab:'add',entries:[],hyps:[],rawPaste:'',parsed:null,step:'paste',statusLabel:'',error:'',filter:'All',filterAction:'all',confirmClear:null};
+
+  function gpm(k){return PAGE_TYPES.find(function(p){return p.key===k;})||{label:k,cadence:'manual',weight:1.0,key:k};}
+  function cbadge(pt){var m=gpm(pt);var map={daily:'bprice','on publish':'blang',weekly:'bproduct','as-it-happens':'bcampaign',manual:'bnoise'};return'<span class="ci-badge '+(map[m.cadence]||'bother')+'">'+m.cadence+'</span>';}
+  function tbadge(t){var c={'Pricing change':'bprice','Language / Localisation move':'blang','Product direction':'bproduct','Campaign / GTM shift':'bcampaign','Hiring signal':'bhiring','Noise':'bnoise'};return'<span class="ci-badge '+(c[t]||'bother')+'">'+(t||'Other')+'</span>';}
+  function teamchip(t){var m={Localisation:'team-loc',Product:'team-prod',Content:'team-content',Leadership:'team-lead'};return'<span class="ci-team '+(m[t]||'team-loc')+'">'+t+'</span>';}
+  function cc(c){return c>=75?'#3B6D11':c>=50?'#854F0B':'#6b7280';}
+
+  function cisave(){try{localStorage.setItem('ci-india-e',JSON.stringify(CS.entries));}catch(e){}try{localStorage.setItem('ci-india-h',JSON.stringify(CS.hyps));}catch(e){}}
+  function ciload(){try{var e=localStorage.getItem('ci-india-e');if(e)CS.entries=JSON.parse(e);}catch(e){}try{var h=localStorage.getItem('ci-india-h');if(h)CS.hyps=JSON.parse(h);}catch(e){}}
+
+  function extractJSON(content){
+    var texts=content.filter(function(b){return b.type==='text';}).map(function(b){return b.text||'';}).join('\n');
+    var cleaned=texts.replace(/```json\s*/g,'').replace(/```\s*/g,'').trim();
+    try{return JSON.parse(cleaned);}catch(e){}
+    function eb(str,o,c){var s=str.indexOf(o);if(s===-1)return null;var d=0,iS=false,es=false;for(var i=s;i<str.length;i++){var ch=str[i];if(es){es=false;continue;}if(ch==='\\'){es=true;continue;}if(ch==='"')iS=!iS;if(!iS){if(ch===o)d++;if(ch===c){d--;if(d===0)return str.slice(s,i+1);}}}return null;}
+    var obj=eb(cleaned,'{','}');if(obj){try{return JSON.parse(obj);}catch(e){}}
+    throw new Error('Could not extract JSON');
+  }
+
+  var TC_CTX='Canva India context: Canva is the world\'s leading design platform. The India Localisation Lead role is focused on making Canva feel intuitive, accessible, and truly local for users across India — across Tamil, Hindi, Telugu, Bengali, Marathi and other languages. Key competitors in India include Adobe Express, Picsart, Microsoft Designer, VistaCreate. India-specific concerns: regional language UI/UX, payment trust in INR, creator economy (YouTube/Reels/Shorts), Tier 2/3 expansion, culturally resonant campaign creative, app store localisation.';
+
+  async function ciapi(prompt){
+    var r=await fetch('https://api.anthropic.com/v1/messages',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({model:'claude-sonnet-4-20250514',max_tokens:1400,messages:[{role:'user',content:prompt}]})});
+    if(!r.ok)throw new Error('API '+r.status);
+    var d=await r.json();
+    if(d.error)throw new Error(d.error.message);
+    return extractJSON(d.content);
+  }
+
+  async function parseSignal(raw){
+    var today=new Date().toISOString().split('T')[0];
+    return ciapi('Parse this India localisation/competitor signal for a Canva India team. Today: '+today+'.\nSignal: """'+raw+'"""\n'+TC_CTX+'\nReturn JSON ONLY: {"date":"YYYY-MM-DD","competitor":"best match or Unknown","pageType":"pricing/india-lp/lang-ux/campaign/blog/careers/appstore/alerts/manual","change":"1-3 sentence description of what changed or was observed"}');
+  }
+
+  async function analyzeSignal(entry){
+    var pt=gpm(entry.pageType);
+    var prompt='You are an India localisation CI analyst for Canva. Competitor: '+entry.competitor+' | Surface: '+pt.label+' | Date: '+entry.date+' | Signal: '+entry.change+'\n\n'+TC_CTX+'\n\nReturn JSON ONLY: {"theme":"Pricing change/Language / Localisation move/Product direction/Campaign / GTM shift/Hiring signal/Noise","isNoise":false,"noiseReason":null,"actionNeeded":false,"actionTeam":"Localisation/Product/Content/Leadership/null","actionText":null,"watchFor":null,"interpretation":null,"priority":"URGENT/UPDATE/WATCH/FYI"}';
+    return ciapi(prompt);
+  }
+
+  function commitEntry(parsed,result){
+    var entry={id:Date.now()+Math.random(),date:parsed.date,competitor:parsed.competitor,pageType:parsed.pageType,change:parsed.change,theme:result.theme||'Other',isNoise:result.isNoise||false,noiseReason:result.noiseReason||null,actionNeeded:result.actionNeeded||false,actionTeam:result.actionTeam||null,actionText:result.actionText||null,watchFor:result.watchFor||null,interpretation:result.interpretation||null,priority:result.priority||'FYI'};
+    CS.entries.unshift(entry);
+    updateHyps(entry);
+    return entry.id;
+  }
+
+  function wconf(entries){var w=entries.reduce(function(s,e){return s+(gpm(e.pageType).weight||1);},0);var base=Math.min(30+w*12,90);var days=entries.length>0?(Date.now()-new Date(entries[0].date))/86400000:99;return Math.min(Math.round(base+(days<14?5:days<30?0:-5)),95);}
+
+  function hypActions(theme,comp,count){var m={'Pricing change':[{team:'Localisation',text:'Review Canva India pricing page messaging against '+comp+'.'},{team:'Product',text:'Flag '+comp+' pricing move to India product roadmap.'}],'Language / Localisation move':[{team:'Localisation',text:comp+' localisation shift — pull their latest regional UX and compare tone approach.'},{team:'Content',text:'Update India language strategy doc. '+count+' signals confirm deliberate move.'}],'Product direction':[{team:'Product',text:comp+' building in a specific direction. '+count+' signals give 60-90 day advance warning.'},{team:'Localisation',text:'Check if '+comp+' product direction affects India-specific feature prioritisation.'}],'Campaign / GTM shift':[{team:'Content',text:comp+' changing India GTM. Review open campaign briefs.'},{team:'Localisation',text:'Assess if '+comp+' regional messaging shift requires a Canva India response.'}],'Hiring signal':[{team:'Leadership',text:comp+' India hiring pattern — 90-day warning of localisation investment ahead.'},{team:'Product',text:'Note in '+comp+' brief: expected India product announcement in 90-120 days.'}]};return m[theme]||[{team:'Localisation',text:'Review '+comp+' India profile. '+count+' signals warrant attention.'}];}
+
+  function updateHyps(entry){
+    if(entry.isNoise||!entry.theme||entry.theme==='Noise')return;
+    var rel=CS.entries.filter(function(e){return e.competitor===entry.competitor&&e.theme===entry.theme&&!e.isNoise;});
+    if(rel.length<3)return;
+    var id=entry.competitor+'__'+entry.theme;
+    var conf=wconf(rel);
+    var sigs=rel.map(function(e){return e.date+' ['+gpm(e.pageType).label+']: '+e.change.slice(0,80)+(e.change.length>80?'...':'');});
+    var actions=hypActions(entry.theme,entry.competitor,rel.length);
+    var hm={'Pricing change':entry.competitor+' has made '+rel.length+' pricing moves targeting India. Deliberate strategy shift.','Language / Localisation move':entry.competitor+' coordinating a regional localisation push. '+rel.length+' signals confirm.','Product direction':entry.competitor+' building for India. '+rel.length+' signals give 60-90 day advance warning.','Campaign / GTM shift':entry.competitor+' changing India GTM. '+rel.length+' signals indicate structural shift.','Hiring signal':entry.competitor+' India hiring pattern ('+rel.length+' signals) — expect announcement in 90-120 days.'};
+    var ex=CS.hyps.find(function(h){return h.id===id;});
+    if(ex){ex.signalCount=rel.length;ex.confidence=conf;ex.signals=sigs;ex.updatedAt=entry.date;ex.hypothesis=hm[entry.theme]||rel.length+' signals form a pattern.';ex.actions=actions;}
+    else CS.hyps.unshift({id:id,competitor:entry.competitor,theme:entry.theme,hypothesis:hm[entry.theme]||rel.length+' signals form a pattern.',signalCount:rel.length,confidence:conf,signals:sigs,createdAt:entry.date,updatedAt:entry.date,actions:actions});
+  }
+
+  function renderActBlock(entry){
+    if(entry.isNoise)return'<div class="ci-act-block act-fyi"><div class="ci-act-label">Logged for context</div>'+(entry.noiseReason||'Minor change.')+'</div>';
+    if(entry.actionNeeded&&entry.actionText)return'<div class="ci-act-block act-do"><div class="ci-act-label">Action needed'+(entry.actionTeam?' · '+teamchip(entry.actionTeam):'')+'</div>'+entry.actionText+'</div>';
+    if(entry.watchFor)return'<div class="ci-act-block act-watch"><div class="ci-act-label">Watch — one more signal needed</div>'+(entry.interpretation||'')+'<div style="font-size:11px;margin-top:4px;font-style:italic">Look for: '+entry.watchFor+'</div></div>';
+    return'<div class="ci-act-block act-fyi"><div class="ci-act-label">FYI</div>'+(entry.interpretation||'Logged.')+'</div>';
+  }
+
+  async function handleParse(){
+    if(!CS.rawPaste.trim()){CS.error='Paste a signal first.';cirender();return;}
+    CS.error='';CS.step='parsing';cirender();
+    try{CS.parsed=await parseSignal(CS.rawPaste);CS.step='confirm';}
+    catch(e){CS.error='Could not parse: '+e.message;CS.step='paste';}
+    cirender();
+  }
+
+  async function handleConfirm(){
+    if(!CS.parsed)return;
+    CS.error='';CS.step='processing';CS.statusLabel='Analysing...';cirender();
+    try{
+      var result=await analyzeSignal(CS.parsed);
+      commitEntry(CS.parsed,result);
+      cisave();
+      CS.rawPaste='';CS.parsed=null;CS.step='paste';CS.statusLabel='';CS.tab='log';
+    }catch(e){CS.error='Failed: '+e.message;CS.step='confirm';}
+    cirender();
+  }
+
+  function deleteEntry(id){CS.entries=CS.entries.filter(function(e){return e.id!==id;});cisave();cirender();}
+  function clearAll(){if(CS.confirmClear==='yes'){CS.entries=[];CS.hyps=[];CS.confirmClear=null;cisave();cirender();}else{CS.confirmClear='yes';cirender();}}
+  function cancelClear(){CS.confirmClear=null;cirender();}
+
+  function cirender(){
+    var total=CS.entries.length;
+    var actCount=CS.entries.filter(function(e){return e.actionNeeded;}).length;
+    var watchCount=CS.entries.filter(function(e){return !e.isNoise&&!e.actionNeeded&&e.watchFor;}).length;
+    var noiseCount=CS.entries.filter(function(e){return e.isNoise;}).length;
+    var compOpts=['All'].concat(COMPETITORS.filter(function(c){return CS.entries.some(function(e){return e.competitor===c;});}));
+    var filtered=CS.filter==='All'?CS.entries:CS.entries.filter(function(e){return e.competitor===CS.filter;});
+    if(CS.filterAction==='act')filtered=filtered.filter(function(e){return e.actionNeeded;});
+    else if(CS.filterAction==='watch')filtered=filtered.filter(function(e){return !e.isNoise&&!e.actionNeeded&&e.watchFor;});
+    else if(CS.filterAction==='noise')filtered=filtered.filter(function(e){return e.isNoise;});
+
+    var html='<div class="ci-wrap">';
+    html+='<div class="ci-hdr"><div><div class="ci-hdr-title">India Localisation Signal Tracker</div><div class="ci-hdr-sub">'+total+' signals logged</div></div></div>';
+    html+='<div class="ci-stats">';
+    html+='<div class="ci-stat"><div class="ci-stat-n" style="color:#166534">'+actCount+'</div><div class="ci-stat-l">Action needed</div></div>';
+    html+='<div class="ci-stat"><div class="ci-stat-n" style="color:#92400e">'+watchCount+'</div><div class="ci-stat-l">Watch</div></div>';
+    html+='<div class="ci-stat"><div class="ci-stat-n">'+CS.hyps.length+'</div><div class="ci-stat-l">Hypotheses</div></div>';
+    html+='<div class="ci-stat"><div class="ci-stat-n" style="color:#9ca3af">'+noiseCount+'</div><div class="ci-stat-l">Noise</div></div>';
+    html+='</div>';
+    html+='<div class="ci-tabs-wrap"><div class="ci-tabs">';
+    html+='<div class="ci-tab'+(CS.tab==='add'?' active':'')+'" onclick="ciSwitchTab(\'add\')">+ Log signal</div>';
+    html+='<div class="ci-tab'+(CS.tab==='log'?' active':'')+'" onclick="ciSwitchTab(\'log\')">Signal log'+(total>0?' ('+total+')':'')+' </div>';
+    html+='<div class="ci-tab'+(CS.tab==='hyps'?' active':'')+'" onclick="ciSwitchTab(\'hyps\')">Hypotheses'+(CS.hyps.length>0?' ('+CS.hyps.length+')':'')+' </div>';
+    html+='</div></div>';
+    html+='<div class="ci-body">';
+
+    if(CS.tab==='add'){
+      if(CS.step==='paste'||CS.step==='parsing'){
+        html+='<div class="ci-card"><div class="ci-label" style="margin-bottom:6px">Paste any India localisation signal</div>';
+        html+='<textarea class="ci-textarea" style="min-height:110px" placeholder="Paste anything — a competitor\'s new Hindi onboarding, a regional pricing change, an app store update, something you spotted in a Tamil campaign..." oninput="CS.rawPaste=this.value">'+CS.rawPaste+'</textarea>';
+        if(CS.error)html+='<div class="ci-err">'+CS.error+'</div>';
+        if(CS.step==='parsing')html+='<div class="ci-pbox"><div class="ci-spinner"></div>Reading signal...</div>';
+        html+='<div style="margin-top:10px;display:flex;justify-content:flex-end"><button class="ci-btn primary" onclick="ciParse()" '+(CS.step==='parsing'?'disabled':'')+'>Extract</button></div></div>';
+      }
+      if(CS.step==='confirm'&&CS.parsed){
+        var p=CS.parsed;
+        var compOpts2=COMPETITORS.map(function(c){return'<option '+(p.competitor===c?'selected':'')+'>'+c+'</option>';}).join('');
+        var ptOpts=PAGE_TYPES.map(function(pt){return'<option value="'+pt.key+'" '+(p.pageType===pt.key?'selected':'')+'>'+pt.label+'</option>';}).join('');
+        html+='<div class="ci-card">';
+        html+='<div style="background:#f9f9f8;border-radius:8px;padding:10px;border:1px solid #e5e7eb;margin-bottom:10px">';
+        html+='<div style="display:flex;gap:10px;padding:4px 0;border-bottom:1px solid #f3f4f6;font-size:12px"><div style="color:#888;min-width:70px">Date</div><div><input type="date" value="'+p.date+'" onchange="CS.parsed.date=this.value" style="padding:3px 7px;font-size:12px;border:1px solid #d1d5db;border-radius:5px;width:145px"></div></div>';
+        html+='<div style="display:flex;gap:10px;padding:4px 0;border-bottom:1px solid #f3f4f6;font-size:12px;margin-top:4px"><div style="color:#888;min-width:70px;padding-top:4px">Competitor</div><div><select onchange="CS.parsed.competitor=this.value" style="padding:3px 7px;font-size:12px;border:1px solid #d1d5db;border-radius:5px">'+compOpts2+'</select></div></div>';
+        html+='<div style="display:flex;gap:10px;padding:4px 0;border-bottom:1px solid #f3f4f6;font-size:12px;margin-top:4px"><div style="color:#888;min-width:70px;padding-top:4px">Surface</div><div><select onchange="CS.parsed.pageType=this.value" style="padding:3px 7px;font-size:12px;border:1px solid #d1d5db;border-radius:5px">'+ptOpts+'</select></div></div>';
+        html+='<div style="padding:6px 0 2px;font-size:12px;margin-top:4px"><div style="color:#888;margin-bottom:4px">What changed</div><textarea style="font-size:12px;min-height:56px;width:100%;padding:6px 8px;border:1px solid #d1d5db;border-radius:5px;font-family:inherit;resize:vertical" onchange="CS.parsed.change=this.value">'+p.change+'</textarea></div>';
+        html+='</div>';
+        if(CS.error)html+='<div class="ci-err">'+CS.error+'</div>';
+        html+='<div style="display:flex;gap:7px;justify-content:flex-end"><button class="ci-btn ghost sm" onclick="CS.step=\'paste\';CS.parsed=null;CS.error=\'\';cirender()">Back</button><button class="ci-btn primary sm" onclick="ciConfirm()">Analyse</button></div>';
+        html+='</div>';
+      }
+      if(CS.step==='processing')html+='<div class="ci-pbox"><div class="ci-spinner"></div>'+(CS.statusLabel||'Processing...')+'</div>';
+    }
+
+    if(CS.tab==='log'){
+      if(total===0){html+='<div class="ci-empty">No signals yet. Log one from the + Log signal tab.</div>';}
+      else{
+        html+='<div style="display:flex;gap:5px;flex-wrap:wrap;margin-bottom:10px">';
+        if(compOpts.length>1)compOpts.forEach(function(f){html+='<button class="ci-filt'+(CS.filter===f?' active':'')+'" onclick="CS.filter=\''+f+'\';cirender()">'+f+'</button>';});
+        html+='<span style="width:1px;height:16px;background:#e5e7eb;display:inline-block;margin:0 2px"></span>';
+        html+='<button class="ci-filt'+(CS.filterAction==='all'?' active':'')+'" onclick="CS.filterAction=\'all\';cirender()">All</button>';
+        html+='<button class="ci-filt'+(CS.filterAction==='act'?' active':'')+'" onclick="CS.filterAction=\'act\';cirender()">Act ('+actCount+')</button>';
+        html+='<button class="ci-filt'+(CS.filterAction==='watch'?' active':'')+'" onclick="CS.filterAction=\'watch\';cirender()">Watch ('+watchCount+')</button>';
+        html+='<button class="ci-filt'+(CS.filterAction==='noise'?' active':'')+'" onclick="CS.filterAction=\'noise\';cirender()">Noise ('+noiseCount+')</button>';
+        if(CS.confirmClear==='yes')html+='<div style="margin-left:auto;display:flex;align-items:center;gap:6px"><span style="font-size:11px;color:#A32D2D;font-weight:600">Delete all?</span><button class="ci-btn sm danger" onclick="ciClearAll()">Yes</button><button class="ci-btn sm ghost" onclick="ciCancelClear()">No</button></div>';
+        else html+='<div style="margin-left:auto"><button class="ci-btn sm danger" onclick="ciClearAll()">Clear all</button></div>';
+        html+='</div>';
+        if(filtered.length===0){html+='<div class="ci-empty">No entries match this filter.</div>';}
+        else{
+          html+='<div class="ci-card" style="padding:0 12px"><div style="display:grid;grid-template-columns:72px 82px 1fr;gap:10px;padding:8px 0;border-bottom:1px solid #f3f4f6"><div class="ci-col-hdr">Date</div><div class="ci-col-hdr">Competitor</div><div class="ci-col-hdr">Signal + Impact</div></div>';
+          html+=filtered.map(function(e){return'<div class="ci-entry-grid"><div><div style="font-size:11px;font-weight:600">'+e.date+'</div><div style="margin-top:3px">'+cbadge(e.pageType)+'</div></div><div><div style="font-size:12px;font-weight:600">'+e.competitor+'</div>'+(!e.isNoise?'<div style="margin-top:3px">'+tbadge(e.theme||'Other')+'</div>':'<div style="margin-top:3px"><span class="ci-badge bnoise">Noise</span></div>')+'</div><div><div style="font-size:12px;font-weight:500;margin-bottom:2px">'+e.change+'</div>'+renderActBlock(e)+'<div style="text-align:right;margin-top:5px"><button onclick="ciDeleteEntry('+e.id+')" style="font-size:10px;color:#9ca3af;background:none;border:none;cursor:pointer">remove</button></div></div></div>';}).join('');
+          html+='</div>';
+        }
+      }
+    }
+
+    if(CS.tab==='hyps'){
+      if(CS.hyps.length===0)html+='<div class="ci-empty">No hypotheses yet.<br><span style="font-size:11px">Log 3+ non-noise signals on the same theme for one competitor.</span></div>';
+      else html+=CS.hyps.map(function(h){return'<div class="ci-hyp-card"><div style="display:flex;align-items:center;gap:7px;flex-wrap:wrap;margin-bottom:5px"><span style="font-size:13px;font-weight:700">'+h.competitor+'</span>'+tbadge(h.theme)+'<span class="ci-signal-pill">'+h.signalCount+' signals</span></div><div style="font-size:12px;line-height:1.65;margin-bottom:8px">'+h.hypothesis+'</div><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:2px"><div style="font-size:10px;color:#888">Confidence</div><div style="font-size:11px;font-weight:700;color:'+cc(h.confidence)+'">'+h.confidence+'%</div></div><div class="ci-conf-wrap"><div class="ci-conf-bar" style="width:'+h.confidence+'%;background:'+cc(h.confidence)+'"></div></div>'+(h.actions&&h.actions.length?'<div class="ci-hyp-act"><div class="ci-hyp-act-label">Actions</div>'+h.actions.map(function(a){return'<div class="ci-hyp-act-item">'+teamchip(a.team)+' <span>'+a.text+'</span></div>';}).join('')+'</div>':'')+'<div style="margin-top:10px"><div style="font-size:10px;font-weight:700;color:#888;text-transform:uppercase;letter-spacing:.05em;margin-bottom:4px">Supporting signals</div><div style="font-size:11px;color:#666;line-height:1.9">'+h.signals.map(function(s){return'<div>— '+s+'</div>';}).join('')+'</div></div></div>';}).join('');
+    }
+
+    html+='</div></div>';
+    document.getElementById('ci-shell').innerHTML=html;
+  }
+
+  function ciSwitchTab(t){CS.tab=t;cirender();}
+  function ciParse(){handleParse();}
+  function ciConfirm(){handleConfirm();}
+  function ciDeleteEntry(id){deleteEntry(id);}
+  function ciClearAll(){clearAll();}
+  function ciCancelClear(){cancelClear();}
+
+  window.ciSwitchTab=ciSwitchTab;
+  window.ciParse=ciParse;
+  window.ciConfirm=ciConfirm;
+  window.ciDeleteEntry=ciDeleteEntry;
+  window.ciClearAll=ciClearAll;
+  window.ciCancelClear=ciCancelClear;
+  window.CS=CS;
+
+  ciload();
+  cirender();
+})();
+</script>
+</body>
+</html>
